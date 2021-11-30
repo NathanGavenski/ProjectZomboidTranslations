@@ -1,3 +1,5 @@
+
+
 import argparse
 from os import listdir
 from os.path import isfile
@@ -8,7 +10,7 @@ def get_args():
     '''
     parser = argparse.ArgumentParser(description='Args for comparing tags')
     parser.add_argument('--origin', default='EN', help='Which language should it compare to')
-    parser.add_argument('--destiny', default='PTBR', help='Which language should it compare with')
+    parser.add_argument('--target', default='PTBR', help='Which language should it compare with')
     return parser.parse_args()
 
 if __name__ == '__main__':
@@ -17,7 +19,7 @@ if __name__ == '__main__':
         This only use python default packages so no extra instalations are required.
 
         For running just execute:
-        python compare_tags.py --origin EN --destiny PTBR
+        python compare_tags.py --origin EN --target PTBR
     '''
     args = get_args()
     english_path = f'./{args.origin}'
@@ -28,7 +30,7 @@ if __name__ == '__main__':
     with open('tag_difference.txt', 'w') as result:
         for en_file in english_files:
 
-            trans_file = en_file.replace(args.origin, args.destiny)
+            trans_file = en_file.replace(args.origin, args.target)
 
             en_dict = {}
             with open(en_file, 'r') as f:
